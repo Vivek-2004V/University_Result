@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RGPV Results Portal</title>
+    <!-- Include Bootstrap CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Include Font Awesome for Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <!-- Favicon using Font Awesome -->
+    <link rel="icon" type="image/svg+xml"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 448 512'><path fill='%23dc3545' d='M224 32c-45.6 0-90.3 12.9-128 37.3C64.7 95.8 32 140.8 32 192c0 52 20 98.9 53.3 132.4C135 392.3 192 472 224 512c32-40 89-119.7 138.7-187.6C396 290.9 416 244 416 192c0-51.2-32.7-96.2-64-122.7C314.3 44.9 269.6 32 224 32z'/></svg>">
+
+    <style>
+        /* General styling for body and html */
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* Header styles */
+        .header {
+            background: linear-gradient(90deg, #ff0000, #007bff);
+            color: white;
+            padding: 15px 0;
+            text-align: center;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+        }
+
+        .header h2 {
+            font-size: 1.8rem;
+            margin: 0;
+        }
+
+        /* Form container styles */
+        .form-container {
+            margin: 30px auto;
+            max-width: 500px;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+
+        /* Captcha display styles */
+        .captcha-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .captcha {
+            display: inline-block;
+            background-color: #e8e9eb;
+            color: #dc3545;
+            padding: 10px 20px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            letter-spacing: 2px;
+            border: 1px solid #a09e9e;
+            border-radius: 5px;
+            min-width: 120px;
+        }
+
+        /* Primary button styles */
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background-color: #ff0000;
+            border-color: #ff0000;
+        }
+
+        /* Footer styles */
+        .footer {
+            background: linear-gradient(90deg, #007bff, #ff0000);
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+            margin-top: auto;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .footer p {
+            margin: 0;
+            font-size: 0.9rem;
+        }
+
+        /* Footer icon styles */
+        .footer-icons a {
+            color: white;
+            margin: 0 10px;
+            font-size: 1.2rem;
+            transition: transform 0.3s, color 0.3s;
+        }
+
+        .footer-icons a:hover {
+            transform: scale(1.2);
+            color: #ffeb3b;
+        }
+
+        /* Responsive adjustments for smaller screens */
+        @media (max-width: 576px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .header h2 {
+                font-size: 1.5rem;
+            }
+        }
+          /* Styling for back button */
+          .back-btn {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 50px;
+            border: none;
+            font-size: 1.2rem;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+        }
+
+        .back-btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Back Button -->
+    <button class="back-btn" onclick="window.location.href='index.html'">
+        <i class="fas fa-arrow-left"></i> Back
+    </button>
+    
+    
+    <!-- Header Section -->
+    <header class="header">
+        <h1><i class="fas fa-university"></i> Rajiv Gandhi Proudyogiki Vishwavidyalaya, Bhopal</h1>
+        <h2><i class="fas fa-laptop"></i> Results</h2>
+    </header>
+
+    <!-- Main Content: Form Section -->
+    <div class="container form-container">
+        <form>
+            <!-- Enrollment Number Input -->
+            <div class="mb-3">
+                <label for="enrollmentNo" class="form-label">
+                    <i class="fas fa-id-card"></i> Enrollment No.
+                </label>
+                <input type="text" class="form-control" id="enrollmentNo" placeholder="Enter your enrollment number">
+            </div>
+            <!-- Semester Dropdown -->
+            <div class="mb-3">
+                <label for="semester" class="form-label">
+                    <i class="fas fa-calendar-alt"></i> Semester
+                </label>
+                <select class="form-select" id="semester">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                </select>
+            </div>
+            <!-- Grading Option Radio Buttons -->
+            <div class="mb-3">
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="gradingOption" id="grading" checked>
+                    <label class="form-check-label" for="grading">
+                        <i class="fas fa-graduation-cap"></i> Grading
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="gradingOption" id="nonGrading">
+                    <label class="form-check-label" for="nonGrading">
+                        <i class="fas fa-book"></i> Non-Grading
+                    </label>
+                </div>
+            </div>
+            <!-- Captcha Section -->
+            <div class="captcha-container">
+                <div class="captcha">QJ 4 xY</div>
+                <button type="button" id="refreshCaptcha" class="btn btn-secondary">
+                    <i class="fa-solid fa-sync fa-spin"></i>
+                </button>
+            </div>
+            <!-- Captcha Input -->
+            <div class="mb-3">
+                <input type="text" class="form-control" id="captchaInput" placeholder="Enter captcha">
+            </div>
+            <!-- Submit Button -->
+            <button type="button" class="btn btn-primary w-100">View Result</button>
+        </form>
+    </div>
+
+    <!-- Footer Section -->
+    <footer class="footer">
+        <p>This portal is managed by <b>CRISP, Bhopal</b>.</p>
+        <div class="footer-icons">
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-linkedin"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+        </div>
+        <p>&copy; 2024 All Rights Reserved</p>
+    </footer>
+
+    <!-- Include Bootstrap JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Refresh captcha logic
+        document.getElementById('refreshCaptcha').addEventListener('click', function () {
+            const captcha = document.querySelector('.captcha');
+            const newCaptcha = Math.random().toString(36).substring(2, 8).toUpperCase();
+            captcha.textContent = newCaptcha;
+        });
+    </script>
+</body>
+
+</html>

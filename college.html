@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RGPV University</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- FontAwesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <!-- Favicon using Font Awesome -->
+    <link rel="icon" type="image/svg+xml"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 448 512'><path fill='%23dc3545' d='M224 32c-45.6 0-90.3 12.9-128 37.3C64.7 95.8 32 140.8 32 192c0 52 20 98.9 53.3 132.4C135 392.3 192 472 224 512c32-40 89-119.7 138.7-187.6C396 290.9 416 244 416 192c0-51.2-32.7-96.2-64-122.7C314.3 44.9 269.6 32 224 32z'/></svg>">
+
+    <!-- Custom CSS -->
+    <style>
+        /* Fixed Navbar */
+        .navbar {
+            background: linear-gradient(to right, #007bff, #dc3545);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .navbar .navbar-brand,
+        .navbar .nav-link {
+            color: #ffffff;
+        }
+
+        .navbar .navbar-brand:hover {
+            color: #ffeb3b;
+            /* Yellow color on hover */
+        }
+
+        .navbar .nav-link:hover {
+            color: #ffeb3b;
+            /* Yellow color on hover */
+        }
+
+        /* Add padding to the body or main content to prevent overlap with the navbar */
+        body {
+            padding-top: 70px;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            background-image: url('https://i.postimg.cc/Vs36rhcN/slide6.jpg');
+            background-size: cover;
+            background-position: center;
+            padding: 150px 0;
+            position: relative;
+            overflow: hidden;
+            /* Prevent the overlay from overflowing */
+        }
+
+        .hero-section .overlay {
+            background: rgba(0, 123, 255, 0.6);
+            /* Transparent blue overlay */
+            padding: 50px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        .hero-section h1,
+        .hero-section p {
+            position: relative;
+            z-index: 2;
+            /* Ensure text is on top of the overlay */
+        }
+
+        .btn-primary {
+            background-color: #d32f2f;
+            /* Red */
+            border-color: #d32f2f;
+        }
+
+        .btn-primary:hover {
+            background-color: #ff5722;
+            /* Lighter Red */
+            border-color: #ff5722;
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(0, 123, 255, 0.6);
+            color: #ffffff;
+            font-size: 0.9rem;
+            padding: 40px 0;
+        }
+
+        footer a {
+            text-decoration: none;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+        footer a:hover {
+            color: #ffeb3b;
+            /* Yellow on hover */
+            transform: scale(1.1);
+        }
+
+        footer .fab {
+            font-size: 24px;
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+
+        footer .fab:hover {
+            color: #ffeb3b;
+            /* Yellow on hover */
+            transform: scale(1.3);
+        }
+
+        footer h5 {
+            position: relative;
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+
+        footer h5::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            background-color: #ffeb3b;
+            /* Yellow underline */
+            bottom: -5px;
+            left: 0;
+            transform: scaleX(0);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        footer h5:hover::after {
+            transform: scaleX(1);
+        }
+
+        footer ul li {
+            position: relative;
+            padding-left: 20px;
+        }
+
+        footer ul li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            width: 5px;
+            height: 5px;
+            background-color: #ffeb3b;
+            /* Yellow dot */
+            border-radius: 50%;
+            transform: translateY(-50%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        footer ul li:hover::before {
+            opacity: 1;
+        }
+
+        footer .row {
+            margin-bottom: 20px;
+        }
+
+        footer .col-lg-4,
+        footer .col-md-6 {
+            margin-bottom: 30px;
+        }
+
+        footer .col-lg-4 h5,
+        footer .col-md-6 h5 {
+            font-size: 1.25rem;
+            margin-bottom: 10px;
+        }
+
+        footer .col-lg-4 p,
+        footer .col-md-6 ul li {
+            font-size: 0.9rem;
+        }
+
+        footer .col-lg-4 p {
+            line-height: 1.6;
+        }
+
+        footer .social-icons a {
+            text-decoration: none;
+            color: white;
+            margin: 10px;
+            font-size: 1.5rem;
+        }
+
+        footer .social-icons a:hover {
+            color: #ffeb3b;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+
+            footer .col-lg-4,
+            footer .col-md-6 {
+                text-align: center;
+                margin-bottom: 20px;
+            }
+
+            footer .social-icons a {
+                margin: 5px;
+            }
+
+            footer .container {
+                padding-left: 10px;
+                padding-right: 10px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            footer h5 {
+                font-size: 1.1rem;
+            }
+
+            footer .col-md-6,
+            footer .col-lg-4 {
+                margin-bottom: 15px;
+            }
+        }
+
+        /* Custom CSS for consistent card height */
+        .card {
+            height: 100%;
+            /* Makes all cards the same height */
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-body {
+            flex-grow: 1;
+            /* Ensures the body stretches to fill the remaining space */
+        }
+
+        /* Optional: Limit max height for cards */
+        .card img {
+            object-fit: cover;
+            height: 200px;
+            /* Optional: restrict image height */
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="#">
+                <i class="fas fa-university" style="color: #f9f7f7; font-size: 30px; margin-right: 10px;"></i>
+                RGPV University
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="fas fa-home"></i> Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about"><i class="fas fa-info-circle"></i> About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#courses"><i class="fas fa-book"></i> Courses</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html"><i class="fas fa-trophy"></i> Result</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact"><i class="fas fa-envelope"></i> Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section text-white text-center">
+        <div class="overlay">
+            <div class="container">
+                <h1 class="display-4 fw-bold">Welcome to RGPV University</h1>
+                <p class="lead">Empowering students to achieve academic excellence and career success.</p>
+                <a href="#about" class="btn btn-primary mt-3">Learn More</a>
+            </div>
+        </div>
+    </section>
+    <!-- Department Section -->
+    <section id="departments" class="bg-light py-5">
+        <div class="container">
+            <h2 class="text-center">Our Departments</h2>
+            <p class="text-center">Explore the wide range of academic departments at RGPV University.</p>
+            <div class="row mt-4">
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100">
+                        <img src="https://i.postimg.cc/YSGD98KQ/abstract-php-c-analytics.jpg" class="card-img-top"
+                            alt="Department of Computer Science">
+                        <div class="card-body">
+                            <h5 class="card-title">Department of Computer Science</h5>
+                            <p class="card-text">Offering programs in computer science, AI, machine learning, and
+                                software engineering.</p>
+                            <a href="#courses" class="btn btn-primary">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100">
+                        <img src="https://i.postimg.cc/zGWRGR2V/istockphoto-1469656864-612x612.jpg" class="card-img-top"
+                            alt="Department of Electronics">
+                        <div class="card-body">
+                            <h5 class="card-title">Department of Electronics</h5>
+                            <p class="card-text">Innovative programs in electronics, electrical engineering, and
+                                communication systems.</p>
+                            <a href="#courses" class="btn btn-primary">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100">
+                        <img src="https://i.postimg.cc/MpDfB8xS/istockphoto-1056710182-612x612.jpg" class="card-img-top"
+                            alt="Department of Mechanical Engineering">
+                        <div class="card-body">
+                            <h5 class="card-title">Department of Mechanical Engineering</h5>
+                            <p class="card-text">Cutting-edge research and programs in mechanical design,
+                                thermodynamics, and robotics.</p>
+                            <a href="#courses" class="btn btn-primary">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Result Section -->
+    <section id="result" class="bg-light py-5">
+        <div class="container">
+            <h2 class="text-center">University Results</h2>
+            <p class="text-center">Check your academic results here. We provide transparent and accurate results for all
+                courses and programs.</p>
+            <div class="text-center mt-4">
+                <a href="index.html" class="btn btn-primary">Check Results</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="bg-dark text-white py-5">
+        <div class="container">
+            <h2 class="text-center">Contact Us</h2>
+            <form class="row mt-4">
+                <div class="col-md-6 mb-3">
+                    <div class="input-group">
+                        <span class="input-group-text"><i class="fas fa-user"></i></span>
+                        <input type="text" class="form-control" placeholder="Your Name">
+                    </div>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <div class="input-group">
+                        <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                        <input type="email" class="form-control" placeholder="Your Email">
+                    </div>
+                </div>
+                <div class="col-12 mb-3">
+                    <div class="input-group">
+                        <span class="input-group-text"><i class="fas fa-comment-dots"></i></span>
+                        <textarea class="form-control" rows="4" placeholder="Your Message"></textarea>
+                    </div>
+                </div>
+                <div class="col-12 text-center">
+                    <button type="submit" class="btn btn-primary"><i class="fas fa-paper-plane"></i> Send
+                        Message</button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white text-center py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <h5>About RGPV University</h5>
+                    <p>RGPV University, located in Bhopal, India, offers a range of undergraduate, postgraduate, and
+                        doctoral programs to help students excel in their chosen fields.</p>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <h5>Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-white">Home</a></li>
+                        <li><a href="#about" class="text-white">About</a></li>
+                        <li><a href="#courses" class="text-white">Courses</a></li>
+                        <li><a href="#contact" class="text-white">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 col-md-12 mb-4">
+                    <h5>Connect With Us</h5>
+                    <div>
+                        <a href="#" class="text-white me-3"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-white me-3"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-white me-3"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-white me-3"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-4">
+                <p>&copy; 2024 RGPV University. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
